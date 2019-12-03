@@ -25,6 +25,19 @@
         android:id="@+id/chooseAreaFragment"
         android:name="com.wbelote.climbtracker.ChooseAreaFragment"
         android:label="fragment_choose_area"
-        tools:layout="@layout/fragment_choose_area" />
+        tools:layout="@layout/fragment_choose_area" >
+        <action
+            android:id="@+id/action_chooseAreaFragment_to_chooseProblemFragment"
+            app:destination="@id/chooseProblemFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseProblemFragment"
+        android:name="com.wbelote.climbtracker.ChooseProblemFragment"
+        android:label="fragment_choose_problem"
+        tools:layout="@layout/fragment_choose_problem" />
 
 </navigation>
