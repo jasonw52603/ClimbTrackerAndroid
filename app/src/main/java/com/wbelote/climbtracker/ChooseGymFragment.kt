@@ -55,6 +55,7 @@ class ChooseGymFragment : Fragment() {
             holder.tv.text = gymList[position].name
 
             holder.view.setOnClickListener {
+                MainActivity.currentGym = gymList[position]
                 val action = ChooseGymFragmentDirections
                     .actionChooseGymFragmentToChooseAreaFragment()
                 holder.view.findNavController().navigate(action)
