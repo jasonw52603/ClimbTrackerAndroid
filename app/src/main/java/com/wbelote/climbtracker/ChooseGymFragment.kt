@@ -43,7 +43,7 @@ class ChooseGymFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GymViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_gym, parent)
+                .inflate(R.layout.item_gym, parent, false)
             return GymViewHolder(view)
         }
 
