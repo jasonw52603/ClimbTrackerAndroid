@@ -22,9 +22,8 @@ class ChooseAreaFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_choose_area, container, false)
 
-        // TODO: pass area list from
         val rv: RecyclerView = view.findViewById(R.id.rvAreas)
-        rv.adapter = AreaAdapter(arrayListOf())
+        rv.adapter = AreaAdapter(MainActivity.currentGym!!.areas)
         rv.layoutManager = LinearLayoutManager(view.context)
 
         return view

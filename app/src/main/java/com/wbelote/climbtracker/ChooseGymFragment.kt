@@ -24,8 +24,32 @@ class ChooseGymFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_choose_gym, container, false)
 
         val gyms = arrayListOf(
-            Gym("TRC Morrisville"),
-            Gym("TRC Durham")
+            Gym(
+                "TRC Morrisville",
+                arrayListOf(
+                    Area("The Donut"),
+                    Area("Desk Overhang"),
+                    Area("Summit Overhang"),
+                    Area("The Vert"),
+                    Area("The Cave"),
+                    Area("Expansion")
+                )
+            ),
+            Gym(
+                "TRC Durham",
+                arrayListOf(
+                    Area("The Bull"),
+                    Area("Left Horn"),
+                    Area("Right Horn"),
+                    Area("The Kraken"),
+                    Area("The Bow"),
+                    Area("Starboard Wave"),
+                    Area("The Stern"),
+                    Area("Port Side"),
+                    Area("The Chalice"),
+                    Area("Aisle Four")
+                )
+            )
         )
 
         val rv: RecyclerView = view.findViewById(R.id.rvGyms)
@@ -36,7 +60,8 @@ class ChooseGymFragment : Fragment() {
     }
 
 
-    class GymAdapter(private val gymList: List<Gym>) : RecyclerView.Adapter<GymAdapter.GymViewHolder>() {
+    class GymAdapter(private val gymList: List<Gym>) :
+        RecyclerView.Adapter<GymAdapter.GymViewHolder>() {
 
         class GymViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val tv: TextView = view.findViewById(R.id.tvGymOption)
