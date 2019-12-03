@@ -9,10 +9,18 @@
         android:id="@+id/chooseGymFragment"
         android:name="com.wbelote.climbtracker.ChooseGymFragment"
         android:label="fragment_choose_gym"
-        tools:layout="@layout/fragment_choose_gym" />
+        tools:layout="@layout/fragment_choose_gym" >
+
+        <action
+            android:id="@+id/action_chooseGymFragment_to_chooseAreaFragment"
+            app:destination="@id/chooseAreaFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/chooseAreaFragment"
         android:name="com.wbelote.climbtracker.ChooseAreaFragment"
         android:label="fragment_choose_area"
         tools:layout="@layout/fragment_choose_area" />
+
 </navigation>

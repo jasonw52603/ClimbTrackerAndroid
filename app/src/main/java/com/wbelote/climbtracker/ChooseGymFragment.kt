@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -37,7 +38,7 @@ class ChooseGymFragment : Fragment() {
 
     class GymAdapter(private val gymList: List<Gym>) : RecyclerView.Adapter<GymAdapter.GymViewHolder>() {
 
-        class GymViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        class GymViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val tv: TextView = view.findViewById(R.id.tvGymOption)
         }
 
@@ -50,7 +51,15 @@ class ChooseGymFragment : Fragment() {
         override fun getItemCount(): Int = gymList.size
 
         override fun onBindViewHolder(holder: GymViewHolder, position: Int) {
+
             holder.tv.text = gymList[position].name
+
+            holder.view.setOnClickListener {
+                val action = ChooseGymFragmentDirections
+                    .actionChooseGymFragmentToChooseAreaFragment()
+                holder.view.findNavController().navigate(action)
+            }
+
         }
 
     }
