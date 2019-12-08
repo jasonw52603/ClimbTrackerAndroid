@@ -24,14 +24,14 @@ class ChooseGymFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_choose_gym, container, false)
 
         val rv: RecyclerView = view.findViewById(R.id.rvGyms)
-        rv.adapter = GymAdapter(GymInfo.Gym.all)
+        rv.adapter = GymAdapter()
         rv.layoutManager = LinearLayoutManager(view!!.context)
 
         return view
     }
 
 
-    class GymAdapter(private val gymList: List<GymInfo.Gym>) :
+    class GymAdapter :
         RecyclerView.Adapter<GymAdapter.GymViewHolder>() {
 
         class GymViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -44,14 +44,14 @@ class ChooseGymFragment : Fragment() {
             return GymViewHolder(view)
         }
 
-        override fun getItemCount(): Int = gymList.size
+        override fun getItemCount(): Int = GymInfo.gymCount
 
         override fun onBindViewHolder(holder: GymViewHolder, position: Int) {
 
-            holder.tv.text = gymList[position].name
+            holder.tv.text = GymInfo.gymNames[position]
 
             holder.view.setOnClickListener {
-                GymInfo.currentGym = gymList[position]
+                GymInfo.chooseGym(position)
                 val action = ChooseGymFragmentDirections
                     .actionChooseGymFragmentToChooseAreaFragment()
                 holder.view.findNavController().navigate(action)

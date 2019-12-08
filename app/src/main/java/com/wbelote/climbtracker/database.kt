@@ -17,23 +17,22 @@ data class Problem(
     val grade: String,
     val color: String,
     val setter: String,
-    val date: Int,
-    val archived: Boolean
+    val date: Int
 )
 @Entity
 data class ProblemInfo(
-    val area: Int,
-    val grade: String,
-    val color: String,
-    val setter: String,
-    val date: Int
+    @ColumnInfo val area: Int,
+    @ColumnInfo val grade: String,
+    @ColumnInfo val color: String,
+    @ColumnInfo val setter: String,
+    @ColumnInfo val date: Int
 )
 
 
 @Dao
 interface ClimbDao {
 
-    @Insert
+    @Insert(entity = Problem::class)
     fun addProblem(p: ProblemInfo)
 
     @Query("SELECT area, grade, color, setter, date FROM Problem")

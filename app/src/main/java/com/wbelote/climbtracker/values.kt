@@ -34,10 +34,15 @@ object GymInfo {
 
     var currentGym = Gym.all[0]
         get() = Gym.all[currentIndex]
-        set(g) {
-            Gym.getFor(g)?.let { currentIndex = it.id }
-            field = Gym.all[currentIndex]
-        }
+        private set
+
+    val gymCount = Gym.all.size
+
+    val gymNames = Gym.all.map { it.name }
+
+    fun chooseGym(pos: Int) {
+        currentIndex = pos
+    }
 
     class Gym private constructor(val id: Int, val name: String, val areas: List<Int>) {
 
