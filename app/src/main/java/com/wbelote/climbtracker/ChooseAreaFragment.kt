@@ -23,14 +23,14 @@ class ChooseAreaFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_choose_area, container, false)
 
         val rv: RecyclerView = view.findViewById(R.id.rvAreas)
-        rv.adapter = AreaAdapter(GymInfo.Area.all)
+        rv.adapter = AreaAdapter()
         rv.layoutManager = LinearLayoutManager(view.context)
 
         return view
     }
 
 
-    class AreaAdapter(private val areas: ArrayList<GymInfo.Area>) : RecyclerView.Adapter<AreaAdapter.AreaViewHolder>() {
+    class AreaAdapter : RecyclerView.Adapter<AreaAdapter.AreaViewHolder>() {
 
         class AreaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val tv: TextView = view.findViewById(R.id.tvGymOption)
@@ -42,10 +42,10 @@ class ChooseAreaFragment : Fragment() {
             return AreaViewHolder(view)
         }
 
-        override fun getItemCount(): Int = areas.size
+        override fun getItemCount(): Int = GymInfo.areaCount
 
         override fun onBindViewHolder(holder: AreaViewHolder, position: Int) {
-            holder.tv.text = areas[position].name
+            holder.tv.text = GymInfo.areaNames[position]
         }
 
     }
