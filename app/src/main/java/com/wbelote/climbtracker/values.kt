@@ -1,62 +1,77 @@
 package com.wbelote.climbtracker
 
 
-val areaIndex = arrayListOf<Area>()
+object GymInfo {
 
-data class Gym(
-    val id: Int,
-    val areaNames: ArrayList<String>
-) {
-    val areas = arrayListOf<Area>()
-    val name = NAMES[id]
     init {
-        var a: Area
-        for (i in areaNames.indices) {
-            a = Area(areaNames[i], areaIndex.size)
-            areaIndex.add(a)
-            this.areas.add(a)
+        Gym.new(
+            "TRC Morrisville", listOf(
+                "The Donut"
+                , "Desk Overhang"
+                , "Summit Overhang"
+                , "The Vert"
+                , "The Cave"
+                , "Expansion"
+            )
+        )
+        Gym.new(
+            "TRC Durham", listOf(
+                "The Bull"
+                , "Left Horn"
+                , "Right Horn"
+                , "The Kraken"
+                , "The Bow"
+                , "Starboard Wave"
+                , "The Stern"
+                , "Port Side"
+                , "The Chalice"
+                , "Aisle Four"
+            )
+        )
+    }
+
+    private var currentIndex = 0
+
+    var currentGym = Gym.all[0]
+        get() = Gym.all[currentIndex]
+        set(g) {
+            Gym.getFor(g)?.let { currentIndex = it.id }
+            field = Gym.all[currentIndex]
+        }
+
+    class Gym private constructor(val id: Int, val name: String, val areas: List<Int>) {
+
+        companion object {
+
+            private var nextID = 0
+            val all = arrayListOf<Gym>()
+
+            fun new(name: String, areaNames: List<String>) {
+                all.add(Gym(nextID, name, Area.add(areaNames, nextID++)))
+            }
+
+            fun getFor(g: Gym): Gym? = all.filter { g.id == it.id }.getOrNull(0)
+
+        }
+
+    }
+
+    class Area private constructor(val id: Int, val name: String, val gym: Int) {
+
+        companion object {
+
+            private var nextID = 0
+            val all = arrayListOf<Area>()
+
+            fun add(names: List<String>, gym: Int): List<Int> {
+                val new = names.map { Area(nextID++, it, gym) }
+                all.addAll(new)
+                return new.map { it.id }
+            }
+
         }
     }
 
-    companion object {
-        const val TRC_MORRISVILLE = 0
-        const val TRC_DURHAM = 1
-        val NAMES = arrayOf("TRC Morrisville", "TRC Durham")
-    }
-}
-
-data class Area(
-    val name: String,
-    val gymID: Int
-)
-
-val gyms = arrayListOf(
-    Gym(
-        Gym.TRC_MORRISVILLE,
-        arrayListOf(
-            "The Donut",
-            "Desk Overhang",
-            "Summit Overhang",
-            "The Vert",
-            "The Cave",
-            "Expansion"
-        )
-    ),
-    Gym(
-        Gym.TRC_DURHAM,
-        arrayListOf(
-            "The Bull",
-            "Left Horn",
-            "Right Horn",
-            "The Kraken",
-            "The Bow",
-            "Starboard Wave",
-            "The Stern",
-            "Port Side",
-            "The Chalice",
-            "Aisle Four"
-        )
-    )
-)
 
 // TODO: add classes for grades, colors?
+}

@@ -33,16 +33,12 @@ class MainActivity : AppCompatActivity() {
             if (destination.id == R.id.chooseGymFragment) {
                 mainToolbar.title = "Choose Gym"
             } else if (destination.id == R.id.chooseAreaFragment) {
-                mainToolbar.title = currentGym?.name ?: "No Gym"
+                mainToolbar.title = GymInfo.currentGym.name
             }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    companion object {
-        var currentGym: Gym? = null
     }
 }

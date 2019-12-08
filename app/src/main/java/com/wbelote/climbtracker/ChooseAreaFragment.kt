@@ -23,14 +23,14 @@ class ChooseAreaFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_choose_area, container, false)
 
         val rv: RecyclerView = view.findViewById(R.id.rvAreas)
-        rv.adapter = AreaAdapter(MainActivity.currentGym!!.areas)
+        rv.adapter = AreaAdapter(GymInfo.Area.all)
         rv.layoutManager = LinearLayoutManager(view.context)
 
         return view
     }
 
 
-    class AreaAdapter(private val areas: ArrayList<Area>) : RecyclerView.Adapter<AreaAdapter.AreaViewHolder>() {
+    class AreaAdapter(private val areas: ArrayList<GymInfo.Area>) : RecyclerView.Adapter<AreaAdapter.AreaViewHolder>() {
 
         class AreaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val tv: TextView = view.findViewById(R.id.tvGymOption)
