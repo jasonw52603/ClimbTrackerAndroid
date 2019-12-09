@@ -89,7 +89,7 @@ object GymInfo {
     }
 
 
-    class Color private constructor(val id: Int, val name: String, val hex: Int) {
+    class Color private constructor(val id: Int, val name: String, hex: Int) {
 
         val r = hex / (256*256)
         val g = (hex / 256) % 256

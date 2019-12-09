@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +29,13 @@ class ChooseProblemFragment : Fragment() {
         val rv: RecyclerView = view.findViewById(R.id.rvProblems)
         rv.adapter = ProblemAdapter()
         rv.layoutManager = LinearLayoutManager(view.context)
+
+        view.findViewById<FloatingActionButton>(R.id.fabAddProblem)
+            .setOnClickListener {
+                val action = ChooseProblemFragmentDirections
+                    .actionChooseProblemFragmentToAddProblemFragment()
+                findNavController().navigate(action)
+            }
 
         return view
     }
@@ -62,7 +71,6 @@ class ChooseProblemFragment : Fragment() {
             val color = GymInfo.color(problems[position].color)
             val colorValue = Color.rgb(color.r, color.g, color.b)
             holder.grade.setBackgroundColor(colorValue)
-            Log.d("ProblemColor", "Problem color id: ${problems[position].color} = $colorValue")
 
         }
     }
