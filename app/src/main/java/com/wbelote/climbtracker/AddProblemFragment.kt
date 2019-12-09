@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +50,10 @@ class AddProblemFragment : Fragment() {
 
                 val problem = ProblemInfo(GymInfo.currentArea.id, grade, color, setter, date)
                 viewModel.addProblem(problem)
+
+                val action = AddProblemFragmentDirections
+                    .actionAddProblemFragmentToClimbProblemFragment()
+                findNavController().navigate(action)
 
             }
 

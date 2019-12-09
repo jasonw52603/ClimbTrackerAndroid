@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,9 +52,9 @@ class ChooseProblemFragment : Fragment() {
 
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
-        private var problems = listOf<ProblemInfo>()
+        private var problems = listOf<Problem>()
 
-        class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        class ProblemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val grade: TextView = view.findViewById(R.id.tvProblemGrade)
             val setter: TextView = view.findViewById(R.id.tvProblemSetter)
             val date: TextView = view.findViewById(R.id.tvProblemDate)
@@ -79,9 +80,15 @@ class ChooseProblemFragment : Fragment() {
             holder.setter.text = problems[position].setter
             holder.date.text = problems[position].date.toString()
 
+            holder.view.setOnClickListener {
+                val action = ChooseProblemFragmentDirections
+                    .actionChooseProblemFragmentToClimbProblemFragment()
+                holder.view.findNavController().navigate(action)
+            }
+
         }
 
-        internal fun setProblems(p: List<ProblemInfo>) {
+        internal fun setProblems(p: List<Problem>) {
             problems = p
             notifyDataSetChanged()
         }

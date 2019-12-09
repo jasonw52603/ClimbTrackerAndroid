@@ -113,4 +113,7 @@ object GymInfo {
     fun colorID(name: String) = Color.all.firstOrNull { it.name == name }?.id ?: 7
 
     fun color(id: Int) = Color.all[id]
+
+
+    var currentProblem: ProblemInfo? = null
 }
