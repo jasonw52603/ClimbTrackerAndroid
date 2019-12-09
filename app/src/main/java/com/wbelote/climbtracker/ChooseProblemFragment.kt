@@ -33,11 +33,11 @@ class ChooseProblemFragment : Fragment() {
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
         var problems = listOf(
-            ProblemInfo(1, "V2", "Green", "SG", 20191203)
-            , ProblemInfo(1, "V5", "Yellow", "AB", 20191203)
-            , ProblemInfo(1, "V3", "Red", "RC", 20191203)
-            , ProblemInfo(1, "V4-", "Blue", "Wei", 20191203)
-            , ProblemInfo(1, "V6+", "Pink", "JP", 20191203)
+            ProblemInfo(1, "V2", R.color.holdGreen, "SG", 20191203)
+            , ProblemInfo(1, "V5", R.color.holdYellow, "AB", 20191203)
+            , ProblemInfo(1, "V3", R.color.holdRed, "RC", 20191203)
+            , ProblemInfo(1, "V4-", R.color.holdBlue, "Wei", 20191203)
+            , ProblemInfo(1, "V6+", R.color.holdPink, "JP", 20191203)
         )
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -57,6 +57,7 @@ class ChooseProblemFragment : Fragment() {
         override fun onBindViewHolder(holder: ProblemViewHolder, position: Int) {
 
             holder.grade.text = problems[position].grade
+            holder.grade.setBackgroundColor(problems[position].color)
 
         }
     }

@@ -37,6 +37,7 @@ object GymInfo {
     var currentGym = Gym.all[0]
         get() = Gym.all[currentGymIndex]
         private set
+
     fun chooseGym(pos: Int) {
         currentGymIndex = pos
     }
@@ -51,6 +52,7 @@ object GymInfo {
     var currentArea = Area.all[0]
         get() = Area.all[currentAreaIndex]
         private set
+
     fun chooseArea(pos: Int) {
         currentAreaIndex = currentGym.areas[pos]
     }

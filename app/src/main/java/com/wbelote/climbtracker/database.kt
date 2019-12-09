@@ -15,7 +15,7 @@ data class Problem(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val area: Int,
     val grade: String,
-    val color: String,
+    val color: Int,
     val setter: String,
     val date: Int
 )
@@ -23,7 +23,7 @@ data class Problem(
 data class ProblemInfo(
     @ColumnInfo val area: Int,
     @ColumnInfo val grade: String,
-    @ColumnInfo val color: String,
+    @ColumnInfo val color: Int,
     @ColumnInfo val setter: String,
     @ColumnInfo val date: Int
 )
