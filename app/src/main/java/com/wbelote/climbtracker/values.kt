@@ -97,7 +97,7 @@ object GymInfo {
 
         companion object {
             val all = arrayListOf(
-                Color(0, "Red", 0xD13434)
+                Color(0, "Red", 0xE53636)
                 , Color(1, "Orange", 0xFB8C00)
                 , Color(2, "Yellow", 0xFDD835)
                 , Color(3, "Green", 0x7CB342)
