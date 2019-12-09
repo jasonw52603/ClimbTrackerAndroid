@@ -30,20 +30,30 @@ object GymInfo {
         )
     }
 
-    private var currentIndex = 0
-    var currentGym = Gym.all[0]
-        get() = Gym.all[currentIndex]
-        private set
     val gymCount = Gym.all.size
     val gymNames = Gym.all.map { it.name }
+
+    private var currentGymIndex = 0
+    var currentGym = Gym.all[0]
+        get() = Gym.all[currentGymIndex]
+        private set
     fun chooseGym(pos: Int) {
-        currentIndex = pos
+        currentGymIndex = pos
     }
+
 
     val areaCount
         get() = currentGym.areas.size
     val areaNames
         get() = currentGym.areas.map { Area.all[it].name }
+
+    private var currentAreaIndex = 0
+    var currentArea = Area.all[0]
+        get() = Area.all[currentAreaIndex]
+        private set
+    fun chooseArea(pos: Int) {
+        currentAreaIndex = currentGym.areas[pos]
+    }
 
     class Gym private constructor(val id: Int, val name: String, val areas: List<Int>) {
 

@@ -30,10 +30,12 @@ class MainActivity : AppCompatActivity() {
 //            .setupWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.chooseGymFragment) {
-                mainToolbar.title = "Choose Gym"
-            } else if (destination.id == R.id.chooseAreaFragment) {
-                mainToolbar.title = GymInfo.currentGym.name
+
+            mainToolbar.title = when (destination.id) {
+                R.id.chooseGymFragment -> "Choose Gym"
+                R.id.chooseAreaFragment -> GymInfo.currentGym.name
+                R.id.chooseProblemFragment -> GymInfo.currentArea.name
+                else -> "Climb Tracker"
             }
         }
     }

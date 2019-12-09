@@ -50,9 +50,12 @@ class ChooseAreaFragment : Fragment() {
 
             holder.view.setOnClickListener {
 
+                GymInfo.chooseArea(position)
+
                 val activity = ChooseAreaFragmentDirections
                     .actionChooseAreaFragmentToChooseProblemFragment()
                 holder.view.findNavController().navigate(activity)
+
             }
         }
 
