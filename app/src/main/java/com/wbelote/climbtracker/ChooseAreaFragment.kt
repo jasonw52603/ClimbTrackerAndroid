@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -32,7 +33,7 @@ class ChooseAreaFragment : Fragment() {
 
     class AreaAdapter : RecyclerView.Adapter<AreaAdapter.AreaViewHolder>() {
 
-        class AreaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        class AreaViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val tv: TextView = view.findViewById(R.id.tvGymOption)
         }
 
@@ -46,6 +47,13 @@ class ChooseAreaFragment : Fragment() {
 
         override fun onBindViewHolder(holder: AreaViewHolder, position: Int) {
             holder.tv.text = GymInfo.areaNames[position]
+
+            holder.view.setOnClickListener {
+
+                val activity = ChooseAreaFragmentDirections
+                    .actionChooseAreaFragmentToChooseProblemFragment()
+                holder.view.findNavController().navigate(activity)
+            }
         }
 
     }

@@ -32,7 +32,13 @@ class ChooseProblemFragment : Fragment() {
 
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
-        var problems = listOf<ProblemInfo>()
+        var problems = listOf(
+            ProblemInfo(1, "V2", "Green", "SG", 20191203)
+            , ProblemInfo(1, "V5", "Yellow", "AB", 20191203)
+            , ProblemInfo(1, "V3", "Red", "RC", 20191203)
+            , ProblemInfo(1, "V4-", "Blue", "Wei", 20191203)
+            , ProblemInfo(1, "V6+", "Pink", "JP", 20191203)
+        )
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val grade: TextView = view.findViewById(R.id.tvProblemGrade)
