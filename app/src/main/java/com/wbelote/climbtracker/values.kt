@@ -56,8 +56,6 @@ object GymInfo {
                 all.add(Gym(nextID, name, Area.add(areaNames, nextID++)))
             }
 
-            fun getFor(g: Gym): Gym? = all.filter { g.id == it.id }.getOrNull(0)
-
         }
 
     }
