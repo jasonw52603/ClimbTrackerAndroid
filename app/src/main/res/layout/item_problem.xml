@@ -26,6 +26,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tvProblemSetter"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tvProblemGrade"
+            app:layout_constraintTop_toTopOf="@id/tvProblemGrade" />
+
+        <TextView
+            android:id="@+id/tvProblemDate"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvProblemGrade"
+            app:layout_constraintStart_toEndOf="@+id/tvProblemGrade" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

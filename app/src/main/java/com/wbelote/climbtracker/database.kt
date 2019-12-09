@@ -30,7 +30,7 @@ data class ProblemInfo(
 interface ClimbDao {
 
     @Insert(entity = Problem::class)
-    fun addProblem(p: ProblemInfo)
+    suspend fun addProblem(p: ProblemInfo)
 
     @Query("SELECT area, grade, color, setter, date FROM Problem")
     fun activeProblems(): LiveData<List<ProblemInfo>>

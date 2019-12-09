@@ -3,12 +3,11 @@ package com.wbelote.climbtracker
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -56,6 +55,8 @@ class ChooseProblemFragment : Fragment() {
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val grade: TextView = view.findViewById(R.id.tvProblemGrade)
+            val setter: TextView = view.findViewById(R.id.tvProblemSetter)
+            val date: TextView = view.findViewById(R.id.tvProblemDate)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProblemViewHolder {
@@ -74,6 +75,9 @@ class ChooseProblemFragment : Fragment() {
             val color = GymInfo.color(problems[position].color)
             val colorValue = Color.rgb(color.r, color.g, color.b)
             holder.grade.setBackgroundColor(colorValue)
+
+            holder.setter.text = problems[position].setter
+            holder.date.text = problems[position].date.toString()
 
         }
 
