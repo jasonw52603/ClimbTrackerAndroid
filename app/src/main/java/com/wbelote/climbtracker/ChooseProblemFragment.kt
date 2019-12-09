@@ -1,6 +1,7 @@
 package com.wbelote.climbtracker
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,11 +35,11 @@ class ChooseProblemFragment : Fragment() {
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
         var problems = listOf(
-            ProblemInfo(1, "V2", GymInfo.color("Green"), "SG", 20191203)
-            , ProblemInfo(1, "V5", GymInfo.color("Yellow"), "AB", 20191203)
-            , ProblemInfo(1, "V3", GymInfo.color("Red"), "RC", 20191203)
-            , ProblemInfo(1, "V4-", GymInfo.color("Blue"), "Wei", 20191203)
-            , ProblemInfo(1, "V6+", GymInfo.color("Pink"), "JP", 20191203)
+            ProblemInfo(1, "V2", GymInfo.colorID("Green"), "SG", 20191203)
+            , ProblemInfo(1, "V5", GymInfo.colorID("Yellow"), "AB", 20191203)
+            , ProblemInfo(1, "V3", GymInfo.colorID("Red"), "RC", 20191203)
+            , ProblemInfo(1, "V4-", GymInfo.colorID("Blue"), "Wei", 20191203)
+            , ProblemInfo(1, "V6+", GymInfo.colorID("Pink"), "JP", 20191203)
         )
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -58,8 +59,10 @@ class ChooseProblemFragment : Fragment() {
         override fun onBindViewHolder(holder: ProblemViewHolder, position: Int) {
 
             holder.grade.text = problems[position].grade
-            holder.grade.setBackgroundColor(problems[position].color)
-            Log.d("ProblemColor", "Problem color id: ${problems[position].color}")
+            val color = GymInfo.color(problems[position].color)
+            val colorValue = Color.rgb(color.r, color.g, color.b)
+            holder.grade.setBackgroundColor(colorValue)
+            Log.d("ProblemColor", "Problem color id: ${problems[position].color} = $colorValue")
 
         }
     }

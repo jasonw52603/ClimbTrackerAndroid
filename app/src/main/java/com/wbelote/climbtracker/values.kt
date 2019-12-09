@@ -89,23 +89,27 @@ object GymInfo {
     }
 
 
-    class Color private constructor(val id: Int, val name: String, val hex: Long) {
+    class Color private constructor(val id: Int, val name: String, val hex: Int) {
+
+        val r = hex / (256*256)
+        val g = (hex / 256) % 256
+        val b = hex % 256
 
         companion object {
             val all = arrayListOf(
-                Color(0, "Red", 0xFFD13434)
-                , Color(1, "Orange", 0xFFFB8C00)
-                , Color(2, "Yellow", 0xFFFDD835)
-                , Color(3, "Green", 0xFF7CB342)
-                , Color(4, "Blue", 0xFF1E88E5)
-                , Color(5, "Purple", 0xFF784CDB)
-                , Color(6, "Pink", 0xFFF053BE)
-                , Color(7, "White", 0xFFA0A0A0)
+                Color(0, "Red", 0xD13434)
+                , Color(1, "Orange", 0xFB8C00)
+                , Color(2, "Yellow", 0xFDD835)
+                , Color(3, "Green", 0x7CB342)
+                , Color(4, "Blue", 0x1E88E5)
+                , Color(5, "Purple", 0x784CDB)
+                , Color(6, "Pink", 0xF053BE)
+                , Color(7, "White", 0xA0A0A0)
             )
         }
     }
 
-    fun color(name: String): Int {
-        return Color.all.firstOrNull { it.name == name }?.id ?: 7
-    }
+    fun colorID(name: String) = Color.all.firstOrNull { it.name == name }?.id ?: 7
+
+    fun color(id: Int) = Color.all[id]
 }
