@@ -105,6 +105,7 @@ object GymInfo {
                 , Color(5, "Purple", 0x784CDB)
                 , Color(6, "Pink", 0xF053BE)
                 , Color(7, "White", 0xA0A0A0)
+                , Color(8, "Black", 0x5A5A5A)
             )
         }
     }

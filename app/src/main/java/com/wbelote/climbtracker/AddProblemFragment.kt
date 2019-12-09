@@ -1,100 +1,58 @@
 package com.wbelote.climbtracker
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 
 /**
  * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [AddProblemFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [AddProblemFragment.newInstance] factory method to
- * create an instance of this fragment.
  */
 class AddProblemFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_problem, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_add_problem, container, false)
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
+        view.findViewById<Button>(R.id.btnProblemSubmit)
+            .setOnClickListener {
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
+                val viewModel =
+                    ViewModelProvider(this, ClimbViewModelFactory(activity!!.application))
+                        .get(ClimbViewModel::class.java)
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddProblemFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddProblemFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                val grade = view.findViewById<EditText>(R.id.etNewGrade).text.toString()
+                val colorID = view.findViewById<RadioGroup>(R.id.rgColors)
+                    .checkedRadioButtonId
+                val color = when (colorID) {
+                    R.id.rbColorRed -> 0
+                    R.id.rbColorOrange -> 1
+                    R.id.rbColorYellow -> 2
+                    R.id.rbColorGreen -> 3
+                    R.id.rbColorBlue -> 4
+                    R.id.rbColorPurple -> 5
+                    R.id.rbColorPink -> 6
+                    R.id.rbColorWhite -> 7
+                    R.id.rbColorBlack -> 8
+                    else -> -1
                 }
+                val setter = view.findViewById<EditText>(R.id.etNewSetter).text.toString()
+                val date = view.findViewById<EditText>(R.id.etNewDate).text.toString().toInt()
+
+                val problem = ProblemInfo(GymInfo.currentArea.id, grade, color, setter, date)
+                viewModel.addProblem(problem)
+
             }
+
+        return view
     }
+
 }

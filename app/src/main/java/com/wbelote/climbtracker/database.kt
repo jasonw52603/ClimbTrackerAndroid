@@ -2,10 +2,7 @@ package com.wbelote.climbtracker
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.room.*
 import kotlinx.coroutines.launch
 
@@ -89,4 +86,9 @@ class ClimbViewModel(app: Application) : AndroidViewModel(app) {
         db.addProblem(p)
     }
 
+}
+
+class ClimbViewModelFactory(private var application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+        modelClass.getConstructor(Application::class.java).newInstance(application)
 }
