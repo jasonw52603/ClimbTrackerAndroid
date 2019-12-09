@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.chooseGymFragment -> "Choose Gym"
                 R.id.chooseAreaFragment -> GymInfo.currentGym.name
                 R.id.chooseProblemFragment -> GymInfo.currentArea.name
+                R.id.addProblemFragment -> "New Problem"
                 else -> "Climb Tracker"
             }
         }

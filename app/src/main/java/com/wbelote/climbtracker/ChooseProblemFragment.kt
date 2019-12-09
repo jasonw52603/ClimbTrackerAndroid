@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +29,15 @@ class ChooseProblemFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_choose_problem, container, false)
 
         val rv: RecyclerView = view.findViewById(R.id.rvProblems)
-        rv.adapter = ProblemAdapter()
+        val adapter = ProblemAdapter()
+        rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(view.context)
+
+        val viewModel = ViewModelProvider(this, ClimbViewModelFactory(activity!!.application))
+            .get(ClimbViewModel::class.java)
+        viewModel.areaProblems.observe(this, Observer { problems ->
+            adapter.setProblems(problems)
+        })
 
         view.findViewById<FloatingActionButton>(R.id.fabAddProblem)
             .setOnClickListener {
@@ -43,13 +52,7 @@ class ChooseProblemFragment : Fragment() {
 
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
-        var problems = listOf(
-            ProblemInfo(1, "V2", GymInfo.colorID("Green"), "SG", 20191203)
-            , ProblemInfo(1, "V5", GymInfo.colorID("Yellow"), "AB", 20191203)
-            , ProblemInfo(1, "V3", GymInfo.colorID("Red"), "RC", 20191203)
-            , ProblemInfo(1, "V4-", GymInfo.colorID("Blue"), "Wei", 20191203)
-            , ProblemInfo(1, "V6+", GymInfo.colorID("Pink"), "JP", 20191203)
-        )
+        private var problems = listOf<ProblemInfo>()
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val grade: TextView = view.findViewById(R.id.tvProblemGrade)
@@ -72,6 +75,11 @@ class ChooseProblemFragment : Fragment() {
             val colorValue = Color.rgb(color.r, color.g, color.b)
             holder.grade.setBackgroundColor(colorValue)
 
+        }
+
+        internal fun setProblems(p: List<ProblemInfo>) {
+            problems = p
+            notifyDataSetChanged()
         }
     }
 

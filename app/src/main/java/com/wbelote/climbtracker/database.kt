@@ -35,8 +35,8 @@ interface ClimbDao {
     @Query("SELECT area, grade, color, setter, date FROM Problem")
     fun activeProblems(): LiveData<List<ProblemInfo>>
 
-//    @Query("SELECT area, grade, color, setter, date FROM Problem WHERE area = :area")
-//    fun problemsForArea(area: Int): LiveData<List<ProblemInfo>>
+    @Query("SELECT area, grade, color, setter, date FROM Problem WHERE area = :area")
+    fun problemsForArea(area: Int): LiveData<List<ProblemInfo>>
 
 }
 
@@ -78,8 +78,10 @@ class ClimbViewModel(app: Application) : AndroidViewModel(app) {
 
     private val db: ClimbDao = ClimbDatabase.getDatabase(app).getDao()
     val allProblems: LiveData<List<ProblemInfo>>
+    val areaProblems: LiveData<List<ProblemInfo>>
     init {
         allProblems = db.activeProblems()
+        areaProblems = db.problemsForArea(GymInfo.currentArea.id)
     }
 
     fun addProblem(p: ProblemInfo) = viewModelScope.launch {
