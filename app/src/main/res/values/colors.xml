@@ -3,13 +3,4 @@
     <color name="colorPrimary">#242424</color>
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#81C784</color>
-
-    <color name="holdRed">#D13434</color>
-    <color name="holdOrange">#FB8C00</color>
-    <color name="holdYellow">#FDD835</color>
-    <color name="holdGreen">#7CB342</color>
-    <color name="holdBlue">#1E88E5</color>
-    <color name="holdPurple">#784CDB</color>
-    <color name="holdPink">#F053BE</color>
-    <color name="holdWhite">#A0A0A0</color>
 </resources>

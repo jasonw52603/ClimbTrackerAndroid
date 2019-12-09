@@ -89,5 +89,23 @@ object GymInfo {
     }
 
 
-// TODO: add classes for grades, colors?
+    class Color private constructor(val id: Int, val name: String, val hex: Long) {
+
+        companion object {
+            val all = arrayListOf(
+                Color(0, "Red", 0xFFD13434)
+                , Color(1, "Orange", 0xFFFB8C00)
+                , Color(2, "Yellow", 0xFFFDD835)
+                , Color(3, "Green", 0xFF7CB342)
+                , Color(4, "Blue", 0xFF1E88E5)
+                , Color(5, "Purple", 0xFF784CDB)
+                , Color(6, "Pink", 0xFFF053BE)
+                , Color(7, "White", 0xFFA0A0A0)
+            )
+        }
+    }
+
+    fun color(name: String): Int {
+        return Color.all.firstOrNull { it.name == name }?.id ?: 7
+    }
 }

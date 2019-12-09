@@ -2,6 +2,7 @@ package com.wbelote.climbtracker
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,11 +34,11 @@ class ChooseProblemFragment : Fragment() {
     class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
         var problems = listOf(
-            ProblemInfo(1, "V2", R.color.holdGreen, "SG", 20191203)
-            , ProblemInfo(1, "V5", R.color.holdYellow, "AB", 20191203)
-            , ProblemInfo(1, "V3", R.color.holdRed, "RC", 20191203)
-            , ProblemInfo(1, "V4-", R.color.holdBlue, "Wei", 20191203)
-            , ProblemInfo(1, "V6+", R.color.holdPink, "JP", 20191203)
+            ProblemInfo(1, "V2", GymInfo.color("Green"), "SG", 20191203)
+            , ProblemInfo(1, "V5", GymInfo.color("Yellow"), "AB", 20191203)
+            , ProblemInfo(1, "V3", GymInfo.color("Red"), "RC", 20191203)
+            , ProblemInfo(1, "V4-", GymInfo.color("Blue"), "Wei", 20191203)
+            , ProblemInfo(1, "V6+", GymInfo.color("Pink"), "JP", 20191203)
         )
 
         class ProblemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -58,6 +59,7 @@ class ChooseProblemFragment : Fragment() {
 
             holder.grade.text = problems[position].grade
             holder.grade.setBackgroundColor(problems[position].color)
+            Log.d("ProblemColor", "Problem color id: ${problems[position].color}")
 
         }
     }
