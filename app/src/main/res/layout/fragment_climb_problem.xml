@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ClimbProblemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvCurrentGrade"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvCurrentSetter"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tvCurrentGrade"
+        app:layout_constraintTop_toTopOf="@id/tvCurrentGrade" />
+
+    <TextView
+        android:id="@+id/tvCurrentDate"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCurrentGrade"
+        app:layout_constraintStart_toEndOf="@+id/tvCurrentGrade" />
+
+    <TextView
+        android:id="@+id/tvCurrentStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/start"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentGrade" />
+
+    <Switch
+        android:id="@+id/swStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCurrentStart"
+        app:layout_constraintStart_toEndOf="@+id/tvCurrentStart"
+        app:layout_constraintTop_toTopOf="@+id/tvCurrentStart" />
+
+    <TextView
+        android:id="@+id/tvCurrentFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/finish"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentStart" />
+
+    <Switch
+        android:id="@+id/swFinished"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCurrentFinish"
+        app:layout_constraintStart_toEndOf="@+id/tvCurrentFinish"
+        app:layout_constraintTop_toTopOf="@+id/tvCurrentFinish" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

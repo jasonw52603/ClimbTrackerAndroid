@@ -52,7 +52,7 @@ class AddProblemFragment : Fragment() {
                 viewModel.addProblem(problem)
 
                 val action = AddProblemFragmentDirections
-                    .actionAddProblemFragmentToClimbProblemFragment()
+                    .actionAddProblemFragmentToChooseProblemFragment()
                 findNavController().navigate(action)
 
             }

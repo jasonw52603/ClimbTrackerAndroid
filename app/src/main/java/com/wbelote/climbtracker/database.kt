@@ -25,6 +25,23 @@ data class ProblemInfo(
     @ColumnInfo val date: Int
 )
 
+@Entity
+data class Attempt(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val problemID: Int,
+    val started: Boolean,
+    val finished: Boolean,
+    val date: Int
+)
+
+@Entity
+data class AttemptInfo(
+    @ColumnInfo val problemID: Int,
+    @ColumnInfo val started: Boolean,
+    @ColumnInfo val finished: Boolean,
+    @ColumnInfo val date: Int
+)
+
 
 @Dao
 interface ClimbDao {
@@ -41,7 +58,7 @@ interface ClimbDao {
 }
 
 
-@Database(entities = [Problem::class], version = 1)
+@Database(entities = [Problem::class, Attempt::class], version = 1)
 abstract class ClimbDatabase : RoomDatabase() {
 
     abstract fun getDao(): ClimbDao

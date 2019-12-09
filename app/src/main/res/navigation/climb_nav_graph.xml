@@ -60,8 +60,8 @@
         android:label="fragment_add_problem"
         tools:layout="@layout/fragment_add_problem">
         <action
-            android:id="@+id/action_addProblemFragment_to_climbProblemFragment"
-            app:destination="@id/climbProblemFragment" />
+            android:id="@+id/action_addProblemFragment_to_chooseProblemFragment"
+            app:destination="@id/chooseProblemFragment" />
     </fragment>
 
     <fragment

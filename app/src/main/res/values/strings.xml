@@ -17,4 +17,6 @@
     <string name="grade">Grade</string>
     <string name="date">Date Set</string>
     <string name="add_route">ADD ROUTE</string>
+    <string name="start">Started from start</string>
+    <string name="finish">Finished to finish</string>
 </resources>
