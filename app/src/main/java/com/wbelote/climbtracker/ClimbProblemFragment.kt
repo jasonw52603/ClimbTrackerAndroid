@@ -11,6 +11,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass.
@@ -43,8 +44,11 @@ class ClimbProblemFragment : Fragment() {
                     ViewModelProvider(this, ClimbViewModelFactory(activity!!.application))
                         .get(ClimbViewModel::class.java)
 
-
                 viewModel.addAttempt(AttemptInfo(problem!!.id, start, finish, 0))
+
+                val action = ClimbProblemFragmentDirections
+                    .actionClimbProblemFragmentToChooseProblemFragment()
+                findNavController().navigate(action)
             }
 
         return view

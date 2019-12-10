@@ -50,7 +50,10 @@ class AddProblemFragment : Fragment() {
 
                 val problem = ProblemInfo(GymInfo.currentArea.id, grade, color, setter, date)
                 viewModel.addProblem(problem)
-                GymInfo.currentProblem = viewModel.lastProblem()
+                GymInfo.currentProblem = Problem(
+                    viewModel.lastProblemID, problem.area,
+                    problem.grade, problem.color, problem.setter, problem.date
+                )
 
                 val action = AddProblemFragmentDirections
                     .actionAddProblemFragmentToChooseProblemFragment()

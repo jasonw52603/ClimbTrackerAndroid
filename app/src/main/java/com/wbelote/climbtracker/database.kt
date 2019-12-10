@@ -59,7 +59,7 @@ interface ClimbDao {
     fun problemForId(id: Int): List<Problem>
 
     @Insert(entity = Attempt::class)
-    fun addAttempt(a: AttemptInfo)
+    suspend fun addAttempt(a: AttemptInfo)
 
 }
 
@@ -112,8 +112,6 @@ class ClimbViewModel(app: Application) : AndroidViewModel(app) {
     fun addProblem(p: ProblemInfo) = viewModelScope.launch {
         lastProblemID = db.addProblem(p).toInt()
     }
-
-    fun lastProblem() = db.problemForId(lastProblemID).firstOrNull()
 
     fun addAttempt(a: AttemptInfo) = viewModelScope.launch {
         db.addAttempt(a)
