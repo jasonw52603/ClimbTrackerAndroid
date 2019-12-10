@@ -105,7 +105,8 @@ object GymInfo {
                 , Color(5, "Purple", 0x784CDB)
                 , Color(6, "Pink", 0xF053BE)
                 , Color(7, "White", 0xA0A0A0)
-                , Color(8, "Black", 0x5A5A5A)
+                , Color(8, "Gray", 0x6C6C6C)
+                , Color(9, "Black", 0x363636)
             )
         }
     }
@@ -115,5 +116,5 @@ object GymInfo {
     fun color(id: Int) = Color.all[id]
 
 
-    var currentProblem: ProblemInfo? = null
+    var currentProblem: Problem? = null
 }

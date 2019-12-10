@@ -81,6 +81,7 @@ class ChooseProblemFragment : Fragment() {
             holder.date.text = problems[position].date.toString()
 
             holder.view.setOnClickListener {
+                GymInfo.currentProblem = problems[position]
                 val action = ChooseProblemFragmentDirections
                     .actionChooseProblemFragmentToClimbProblemFragment()
                 holder.view.findNavController().navigate(action)

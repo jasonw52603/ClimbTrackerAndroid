@@ -47,13 +47,19 @@ data class AttemptInfo(
 interface ClimbDao {
 
     @Insert(entity = Problem::class)
-    suspend fun addProblem(p: ProblemInfo)
+    suspend fun addProblem(p: ProblemInfo): Long
 
     @Query("SELECT * FROM Problem")
     fun activeProblems(): LiveData<List<Problem>>
 
     @Query("SELECT * FROM Problem WHERE area = :area")
     fun problemsForArea(area: Int): LiveData<List<Problem>>
+
+    @Query("SELECT * FROM Problem WHERE id = :id")
+    fun problemForId(id: Int): List<Problem>
+
+    @Insert(entity = Attempt::class)
+    fun addAttempt(a: AttemptInfo)
 
 }
 
@@ -94,15 +100,23 @@ abstract class ClimbDatabase : RoomDatabase() {
 class ClimbViewModel(app: Application) : AndroidViewModel(app) {
 
     private val db: ClimbDao = ClimbDatabase.getDatabase(app).getDao()
-    val allProblems: LiveData<List<Problem>>
+    private val allProblems: LiveData<List<Problem>>
     val areaProblems: LiveData<List<Problem>>
     init {
         allProblems = db.activeProblems()
         areaProblems = db.problemsForArea(GymInfo.currentArea.id)
     }
 
+    var lastProblemID = -1
+
     fun addProblem(p: ProblemInfo) = viewModelScope.launch {
-        db.addProblem(p)
+        lastProblemID = db.addProblem(p).toInt()
+    }
+
+    fun lastProblem() = db.problemForId(lastProblemID).firstOrNull()
+
+    fun addAttempt(a: AttemptInfo) = viewModelScope.launch {
+        db.addAttempt(a)
     }
 
 }

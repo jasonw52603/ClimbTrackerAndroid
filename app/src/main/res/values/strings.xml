@@ -19,4 +19,5 @@
     <string name="add_route">ADD ROUTE</string>
     <string name="start">Started from start</string>
     <string name="finish">Finished to finish</string>
+    <string name="submit_attempt">Submit Attempt</string>
 </resources>
