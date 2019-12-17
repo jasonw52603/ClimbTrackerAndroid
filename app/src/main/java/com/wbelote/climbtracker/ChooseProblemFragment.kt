@@ -33,6 +33,13 @@ class ChooseProblemFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this, ClimbViewModelFactory(activity!!.application))
             .get(ClimbViewModel::class.java)
+
+        viewModel.areaDates.observe(this, Observer { areaDates ->
+            val date = areaDates.firstOrNull { it.area == GymInfo.currentArea.id }?.date ?: -1
+            view.findViewById<TextView>(R.id.tvAreaSetDate)
+                .text = String.format("Set on %d/%d", (date / 100) % 100, date % 100)
+        })
+
         viewModel.areaProblems.observe(this, Observer { problems ->
             adapter.setProblems(problems)
         })
