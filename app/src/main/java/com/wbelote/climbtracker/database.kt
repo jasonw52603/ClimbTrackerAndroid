@@ -26,6 +26,12 @@ data class ProblemInfo(
 )
 
 @Entity
+data class AreaDate(
+    @ColumnInfo val area: Int,
+    @ColumnInfo val date: Int
+)
+
+@Entity
 data class Attempt(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val problemID: Int,
@@ -60,6 +66,9 @@ interface ClimbDao {
 
     @Insert(entity = Attempt::class)
     suspend fun addAttempt(a: AttemptInfo)
+
+    @Query("SELECT max(date), area FROM Problem GROUP BY area")
+    fun areaDates(): List<AreaDate>
 
 }
 
@@ -102,9 +111,11 @@ class ClimbViewModel(app: Application) : AndroidViewModel(app) {
     private val db: ClimbDao = ClimbDatabase.getDatabase(app).getDao()
     private val allProblems: LiveData<List<Problem>>
     val areaProblems: LiveData<List<Problem>>
+    val areaDates: List<AreaDate>
     init {
         allProblems = db.activeProblems()
         areaProblems = db.problemsForArea(GymInfo.currentArea.id)
+        areaDates = db.areaDates()
     }
 
     var lastProblemID = -1
