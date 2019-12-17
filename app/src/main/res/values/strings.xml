@@ -20,4 +20,6 @@
     <string name="start">Started from start</string>
     <string name="finish">Finished to finish</string>
     <string name="submit_attempt">Submit Attempt</string>
+    <string name="set_on_date">Set on [date]</string>
+    <string name="reset">Reset</string>
 </resources>
