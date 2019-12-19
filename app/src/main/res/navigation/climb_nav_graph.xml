@@ -39,29 +39,19 @@
         android:label="fragment_choose_problem"
         tools:layout="@layout/fragment_choose_problem" >
         <action
-            android:id="@+id/action_chooseProblemFragment_to_addProblemFragment"
-            app:destination="@id/addProblemFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_chooseProblemFragment_to_climbProblemFragment"
             app:destination="@id/climbProblemFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addProblemFragment"
-        android:name="com.wbelote.climbtracker.AddProblemFragment"
-        android:label="fragment_add_problem"
-        tools:layout="@layout/fragment_add_problem">
         <action
-            android:id="@+id/action_addProblemFragment_to_chooseProblemFragment"
-            app:destination="@id/chooseProblemFragment" />
+            android:id="@+id/action_chooseProblemFragment_to_resetAreaFragment"
+            app:destination="@id/resetAreaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -71,7 +61,24 @@
         tools:layout="@layout/fragment_climb_problem">
         <action
             android:id="@+id/action_climbProblemFragment_to_chooseProblemFragment"
-            app:destination="@id/chooseProblemFragment" />
+            app:destination="@id/chooseProblemFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetAreaFragment"
+        android:name="com.wbelote.climbtracker.ResetAreaFragment"
+        android:label="fragment_reset_area"
+        tools:layout="@layout/fragment_reset_area">
+        <action
+            android:id="@+id/action_resetAreaFragment_to_chooseProblemFragment"
+            app:destination="@id/chooseProblemFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
 

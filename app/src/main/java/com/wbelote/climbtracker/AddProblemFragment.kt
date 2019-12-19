@@ -9,10 +9,9 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 
 /**
- * A simple [Fragment] subclass.
+ * Deprecated fragment for adding an individual problem
  */
 class AddProblemFragment : Fragment() {
 
@@ -55,9 +54,9 @@ class AddProblemFragment : Fragment() {
                     problem.grade, problem.color, problem.setter, problem.date
                 )
 
-                val action = AddProblemFragmentDirections
-                    .actionAddProblemFragmentToChooseProblemFragment()
-                findNavController().navigate(action)
+//                val action = AddProblemFragmentDirections
+//                    .actionAddProblemFragmentToChooseProblemFragment()
+//                findNavController().navigate(action)
 
             }
 

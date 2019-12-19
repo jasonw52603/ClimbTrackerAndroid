@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,6 +26,14 @@ class ChooseProblemFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_choose_problem, container, false)
+
+        // Button to reset area
+        view.findViewById<Button>(R.id.btnAreaReset)
+            .setOnClickListener {
+                val action = ChooseProblemFragmentDirections
+                    .actionChooseProblemFragmentToResetAreaFragment()
+                view.findNavController().navigate(action)
+            }
 
         val rv: RecyclerView = view.findViewById(R.id.rvProblems)
         val adapter = ProblemAdapter()
